@@ -29,7 +29,34 @@ module is distributed together with the 7.4 modules inside the zip downloadable
 from the netbeans plugin center.
 
 # Developer information
-## BUILD Instructions:
+## Pre-requisites (Temporary)
+
+At the time of writing (April 2019) the nbm-maven-plugin has moved (along with the rest of Netbeans)
+to the custody of the Apache project. At present, all of the Maven plugins are contained in
+[https://github.com/apache/netbeans-mavenutils](a single repository) and are a pain to access directly. 
+However, the latest version is required to fix [https://github.com/mojohaus/nbm-maven-plugin/issues/42](a compatibility issue)
+with JDk9's module and package declarations. 
+
+The new Maven Utils repository is in the process of [http://mail-archives.apache.org/mod_mbox/netbeans-dev/201904.mbox/%3C009e01d4fc48$1bf54250$53dfc6f0$@apache.org%3E](being broken up),
+but until this work is complete you can build and install the plugin locally without much hassle.
+
+Clone [https://github.com/apache/netbeans-mavenutils](https://github.com/apache/netbeans-mavenutils) 
+to your local machine, then build and install the required Maven dependencies.
+
+```
+cd netbeans-mavenutils/parent/  
+mvn install  
+cd netbeans-mavenutils/netbeansparent/  
+mvn install  
+cd netbeans-mavenutils/nbm-shared/  
+mvn install  
+cd netbeans-mavenutils/nbm-maven-plugin/
+mvn install  
+```
+
+With this in place, you can proceed to the regular (and much simpler) build instructions.
+
+## Build Instructions:
 
 1. Checkout the source code
 2. build with maven (mvn package)
